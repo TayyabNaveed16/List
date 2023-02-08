@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title id=>Project 1</title>
+</head>
+
+<body>
+    <nav class="navbar bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand">Khurram's List</a>
+            <form class="d-flex">
+                <input class="form-control me-2" id ='titleInput' type="text" placeholder="Project Name">
+                <button class="btn btn-outline-success" type="submit" onclick={changeTitle()}>Change</button>
+            </form>
+        </div>
+    </nav>
+
+    <div style="margin-left: 30px; margin-top: 30px;">
+        <h1 id="title" style="text-align: center;">Project 1</h1>
+
+        <!-- Account Name -->
+        <div style="flex-direction: row; margin-top: 50px;">
+            <span style="font-weight: bold; font-size: x-large;">Account: </span>
+            <span style="margin-left: 20px; font-size: large;" id="account"></span>
+            <input style="margin-left: 20px;" type="text" id="accountInput" name="Account" onchange={setAccount()}>
+
+        </div>
+
+        <!-- Date -->
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">Date: </span>
+            <span style="margin-left: 20px; font-size: large;" id="date"></span>
+            <input style="margin-left: 20px;" type="text" id="dateInput" name="date" onchange={setDate()}>
+            <button class="btn btn-outline-dark" style="margin-left: 20px;" onclick={setDateButton()}> Set Today's
+                Date</button>
+        </div>
+
+        <!-- Total FOs -->
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">Total FOs: </span>
+            <span style="margin-left: 20px; font-size: large;" id="FO">0</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="FOButton" onclick={incFO()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="FOButton2" onclick={decFO()}>-</button>
+
+        </div>
+
+        <!-- Organic Orders -->
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">Organic Orders: </span>
+            <span style="margin-left: 20px; font-size: large;" id="Organic">0</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="OrgButton" onclick={incOrg()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="OrgButton2" onclick={decOrg()}>-</button>
+        </div>
+
+        <!-- Delivered Orders -->
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">Delivered Orders: </span>
+            <span style="margin-left: 20px; font-size: large;" id="Delivered">0</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="DelButton" onclick={incDel()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="DelButton2" onclick={decDel()}>-</button>
+        </div>
+
+        <!-- Reviews -->
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">Reviews: </span>
+            <span style="margin-left: 20px; font-size: large;" id="Reviews">1</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="RevButton" onclick={incRev()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="RevButton2" onclick={decRev()}>-</button>
+        </div>
+
+        <!-- Cancelled Orders -->
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">Cancelled Orders: </span>
+            <span style="margin-left: 20px; font-size: large;" id="Cancelled">1</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="cancelButton"
+                onclick={incCancel()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="cancelButton2" onclick={decCancel()}>-</button>
+        </div>
+
+        <!-- Disputes Opened -->
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">Dispute Opened: </span>
+            <span style="margin-left: 20px; font-size: large;" id="Dispute">1</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="disputeButton"
+                onclick={incDispute()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="cancelButton2"
+                onclick={decDispute()}>-</button>
+        </div>
+
+        <!-- Disputes Resolved -->
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">Disputes Resolved: </span>
+            <span style="margin-left: 20px; font-size: large;" id="Resolved">1</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="resolveButton"
+                onclick={incResolve()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="resolveButton2"
+                onclick={decResolve()}>-</button>
+        </div>
+
+        <!-- Rating -->
+        <span style="font-weight: bold; font-size: x-large;">Ratings in the last 24 hours: </span>
+
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">1 Star</span>
+            <span style="margin-left: 20px; font-size: large;" id="Rating1">0</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="1starButton1" onclick={inc1Star()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="1starButton12" onclick={dec1Star()}>-</button>
+        </div>
+
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">2 Star</span>
+            <span style="margin-left: 20px; font-size: large;" id="Rating2">0</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="2starButton" onclick={inc2Star()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="2starButton2" onclick={dec2Star()}>-</button>
+        </div>
+
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">3 Star</span>
+            <span style="margin-left: 20px; font-size: large;" id="Rating3">0</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="3starButton" onclick={inc3Star()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="3starButton2" onclick={dec3Star()}>-</button>
+            <button class="btn btn-warning" style="margin-left: 50px; margin-top: 10px;" id="reset"
+                onclick={reset()}>Reset Ratings</button>
+        </div>
+
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">4 Star</span>
+            <span style="margin-left: 20px; font-size: large;" id="Rating4">0</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="4starButton" onclick={inc4Star()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="4starButton2" onclick={dec4Star()}>-</button>
+        </div>
+
+        <div style="flex-direction: row; margin-top: 10px;">
+            <span style="font-weight: bold; font-size: x-large;">5 Star</span>
+            <span style="margin-left: 20px; font-size: large;" id="Rating5">0</span>
+            <button class="btn btn-success" style="margin-left: 20px;" id="5starButton" onclick={inc5Star()}>+</button>
+            <button class="btn btn-danger" style="margin-left: 5px;" id="5starButton2" onclick={dec5Star()}>-</button>
+        </div>
+
+
+    </div>
+    <br><br>
+
+    <footer style="background-color: black;">
+        <br><br><br>
+
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+</body>
+
+
+
+</html>
